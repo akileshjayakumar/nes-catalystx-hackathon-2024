@@ -79,4 +79,4 @@ npm run lint
 - No committed automated test suite currently exists for Python services.
 
 ## License
-Licensed under the `LicenseRef-CatalystX-Proprietary` license. See [LICENSE](./LICENSE) for full text.
+Licensed under the `MIT` license. See [LICENSE](./LICENSE) for full text.
