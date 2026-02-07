@@ -1,25 +1,66 @@
 # CatalystX 2024 Hackathon
 
-## EduX - AI-Powered Educational Assistant
+Hackathon repository with two education-focused AI prototypes: a multimodal tutor (`edu-x-app`) and a curriculum chat app backed by Neo4j (`neo4j-draft-app`).
 
-EduX is an interactive AI tutor application built with Streamlit that helps students learn from their educational materials. The app features:
+## Quick Start
 
-- **Document Processing**: Upload PDFs, PowerPoint files, and images
-- **Multimodal Learning**: Processes text, tables, images, and graphs from educational materials
-- **AI-Powered Tutoring**: Uses NVIDIA AI models to answer questions about uploaded content
-- **Accessibility Features**: Includes speech-to-text and text-to-speech capabilities
-- **Dyslexia-Friendly UI**: Custom interface designed for better readability
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- Docker (for the Neo4j draft app via Docker Compose)
 
-## Getting Started
+### 1) Run EduX (Streamlit tutor)
+```bash
+cd edu-x-app
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+export NVIDIA_API_KEY="nvapi-..."
+streamlit run app.py
+```
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Set up NVIDIA API key in environment variables
-3. Run the app: `streamlit run app.py`
+### 2) Run Neo4j Draft App (Next.js + FastAPI)
+```bash
+cd neo4j-draft-app
+docker compose up --build
+```
 
-## Technology Stack
+Client runs on `http://localhost:3000`, server API on `http://localhost:8000`.
 
-- Streamlit for the web interface
-- NVIDIA AI models for embeddings and language processing
-- LlamaIndex for document indexing and retrieval
-- PyMuPDF for PDF processing
-- Python-pptx for PowerPoint file handling
+## Core Capabilities
+- Multimodal document tutoring from PDFs, PPTX, and images.
+- Voice-enabled interactions (speech-to-text and text-to-speech) in EduX.
+- Curriculum-aware conversational tutoring service with persistent history in Neo4j.
+- Separate research notebooks and sample images in `/research` for experimentation.
+
+## Configuration
+- `NVIDIA_API_KEY`: required by `edu-x-app` to call NVIDIA models.
+- `OPENAI_API_KEY`: required by `neo4j-draft-app/server`.
+- `NEO4J_URL`: Neo4j connection URL for `neo4j-draft-app/server`.
+- `NEO4J_USERNAME`: Neo4j username for `neo4j-draft-app/server`.
+- `NEO4J_PASSWORD`: Neo4j password for `neo4j-draft-app/server`.
+
+## Usage
+EduX:
+```bash
+cd edu-x-app
+streamlit run app.py
+```
+
+Neo4j draft stack:
+```bash
+cd neo4j-draft-app
+docker compose up
+```
+
+## Contributing and Testing
+- Open a feature branch, keep changes scoped, and submit a PR.
+- Frontend checks:
+```bash
+cd neo4j-draft-app/client
+npm install
+npm run lint
+```
+- Python services currently have no committed automated test suite.
+
+## License
+Proprietary. See [LICENSE](./LICENSE) for usage terms.
